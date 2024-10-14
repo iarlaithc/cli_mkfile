@@ -2,23 +2,24 @@ package main
 
 import (
 	"flag"
-	"fmt"
+	"log"
 	"os"
 )
+
+// function to create
+// Create/Open new file
+// check if file exists in directory,
+// prompt warning if so Y/N?
+// SaveFile
+// refactor to be released as bin and used in CMD
 
 func main(){
 	mkfile := flag.String("mkfile","mkfile", "file to create")
 	flag.Parse()
 
-	fmt.Printf(flag.Args()[0])
-	if flag.NArg() == 0 {
-		fmt.Printf("could not create: %s", *mkfile)
-	} else if flag.Arg(0) == "mkfile" {
-		file, err := os.Create(*mkfile)
-		if err != nil {
-			fmt.Println(err)
-		}	
-		defer file.Close()
-		fmt.Println(file.Name())
-	}
+	file, err := os.Create(*mkfile)
+	if err != nil {
+		log.Fatal(err)
+	}	
+	defer file.Close()
 }
