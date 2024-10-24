@@ -1,3 +1,3 @@
-module cli_windows_mkfile
+module mkfile
 
 go 1.22.5

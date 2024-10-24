@@ -1,25 +1,30 @@
 package main
 
 import (
-	"flag"
-	"log"
+	"fmt"
+	"mkfile/mkfile"
 	"os"
 )
 
-// function to create
-// Create/Open new file
-// check if file exists in directory,
-// prompt warning if so Y/N?
-// SaveFile
-// refactor to be released as bin and used in CMD
-
 func main(){
-	mkfile := flag.String("mkfile","mkfile", "file to create")
-	flag.Parse()
-
-	file, err := os.Create(*mkfile)
+	if len(os.Args) < 2 {
+		fmt.Printf("Usage: mkfile <filename>")
+		os.Exit(1)
+	}
+	if len(os.Args) > 2 {
+		fmt.Printf("Usage: mkfile <filename>")
+		os.Exit(1)
+	}
+	filename := os.Args[1]
+	_, err := os.Stat(filename)
+	if err == nil {
+		fmt.Printf("Error - File Already Exists")
+		os.Exit(1)
+	}
+	err = mkfile.CreateFile(filename)
 	if err != nil {
-		log.Fatal(err)
-	}	
-	defer file.Close()
+		fmt.Printf("Error - Failed To Create File: %v", err)
+		os.Exit(1)
+	}
+	fmt.Printf("%v Created", filename)	
 }
