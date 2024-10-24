@@ -66,7 +66,7 @@ mkfile path/to/file.txt
 
 ### Error Messages
 
-The tool provides clear feedback for common scenarios:
+You get pretty obvious feedback for common scenarios:
 
 - If no filename is provided:
   ```
@@ -93,7 +93,10 @@ mkfile/
 └── go.mod        # Module definition
 ```
 
-## Development
+## Future Development
+
+- Add handler for when file exists already that isn't just exiting
+- Add flags for permission w/r/a
 
 ### Running Tests
 
@@ -103,7 +106,7 @@ go test ./mkfile
 
 ### Building
 
-To create a custom-named binary:
+To create a custom-named binary if you dont like mkfile:
 ```bash
 go build -o customname.exe
 ```
